@@ -42,3 +42,7 @@ class BasePage:
     def send_keys_to_element(self, element: WebElement, value: str) -> None:
         element.clear()
         element.send_keys(value)
+
+    def wait_to_load_source(self, locator: list, attr: str, value: str) -> None:
+        wait(self.driver, 10).until(
+            lambda wd: value not in wd.find_element(*locator).get_attribute(attr))

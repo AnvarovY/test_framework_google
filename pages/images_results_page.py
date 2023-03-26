@@ -23,6 +23,9 @@ class GoogleImagesResultsPage(BasePage):
         images = self.__get_images()
         images[index].click()
 
+    def wait_to_load_image(self) -> None:
+        self.wait_to_load_source(GoogleImagesResultsPageLocators.BIG_IMAGE, 'src', 'data:image')
+
     def __get_images(self) -> list:
         return self.elements_are_present(GoogleImagesResultsPageLocators.IMAGES)
 

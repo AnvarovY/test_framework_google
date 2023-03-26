@@ -49,14 +49,17 @@ def test_google_images(driver):
     images_page.select_image_by_index(1)
     selected_image_name = images_page.get_selected_image_name()
     preview_image_name = images_page.get_selected_image_name()
+    images_page.wait_to_load_image()
     assert selected_image_name == preview_image_name, 'Image description is not the same, it opened ' \
                                                       'a different image!'
 
     preview_image_src = images_page.get_preview_image_source()
     images_page.click_next_button()
+    images_page.wait_to_load_image()
     next_preview_image_src = images_page.get_preview_image_source()
     assert preview_image_src != next_preview_image_src, 'Image resource matched, the image did not change'
 
     images_page.click_previous_button()
+    images_page.wait_to_load_image()
     new_preview_image_src = images_page.get_preview_image_source()
     assert preview_image_src == new_preview_image_src, 'Image resource did not match, the first image did not return'
